@@ -39,6 +39,8 @@ smart-grid-monitor/
 │   ├── index.html             # Glassmorphic layout structure
 │   ├── style.css              # Neon dark-theme styling & responsive layout
 │   └── app.js                 # WebSocket client & real-time charting controller
+├── prototype_firmware/
+│   └── prototype_firmware.ino # Complete C++ sketch to upload to Arduino Uno
 ├── arduino_schematic.jpg      # Visual breadboard circuit wiring diagram
 ├── circuit_schematic.md       # Complete component pinout mapping & connections table
 ├── hardware_integration_plan.md # C++ sketch code & calibration specifications
