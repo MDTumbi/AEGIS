@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltStream & HydroFlow: Smart Utility Grid Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=5">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="dashboard-container">
+        
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <div>
+                    <h1>VoltStream & HydroFlow</h1>
+                    <p class="subtitle">Smart Utility Grid Monitor & Edge AI Anomaly Diagnostic System</p>
+                </div>
+            </div>
+            <div class="time-card">
+                <div class="time-label" id="time-label">Physical System Time</div>
+                <div class="time-value" id="sim-time">--:--:-- --</div>
+                <div class="date-value" id="sim-date">-- --, ----</div>
+            </div>
+        </header>
+
+        <!-- Main Layout Grid -->
+        <main class="dashboard-grid">
+            
+            <!-- Tier 2: AI Diagnostics (Top Row, Full Width) -->
+            <div class="card ai-diagnostics-card" id="alert-banner">
+                <div class="card-header border-b">
+                    <div class="flex-align">
+                        <div class="ai-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                        </div>
+                        <h2>Edge AI Diagnostic Engine</h2>
+                    </div>
+                    <span class="ml-status" id="ml-status-text">Isolation Forest Active</span>
+                </div>
+                <div class="diagnostic-content">
+                    <div class="health-gauge-container">
+                        <div class="health-label">System Integrity Score</div>
+                        <div class="health-bar-bg">
+                            <div class="health-bar" id="health-bar" style="width: 100%;"></div>
+                        </div>
+                        <div class="health-value" id="health-text">100% Healthy</div>
+                    </div>
+
+                    <!-- Environmental Sensors -->
+                    <div class="weather-widget">
+                        <div class="weather-item">
+                            <span class="w-icon">🌡️</span>
+                            <span class="w-label">Temp:</span>
+                            <span class="w-val" id="val-temp">24.0°C</span>
+                        </div>
+                        <div class="weather-item">
+                            <span class="w-icon">💧</span>
+                            <span class="w-label">Humidity:</span>
+                            <span class="w-val" id="val-humidity">60%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-box normal" id="active-alert-box">
+                        <div class="alert-title-container">
+                            <div class="alert-icon" id="alert-box-icon">✓</div>
+                            <div class="alert-title" id="alert-title">Grid Operating Normally</div>
+                        </div>
+                        <div class="alert-description" id="alert-desc">The unsupervised Isolation Forest model has classified the current telemetry signature as normal.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 3 Left: Telemetry Cards Stack (Middle Row, Left Column) -->
+            <div class="telemetry-sidebar-stack">
+                <!-- Card 1: Electricity -->
+                <div class="card tel-card electricity" id="card-electricity">
+                    <div class="card-header">
+                        <span>Electricity Power</span>
+                        <span class="status-badge normal" id="status-power">Normal</span>
+                    </div>
+                    <div class="card-value"><span id="val-power">0.00</span><span class="unit">kW</span></div>
+                </div>
+                
+                <!-- Card 2: Water -->
+                <div class="card tel-card water" id="card-water">
+                    <div class="card-header">
+                        <span>Water Flow Rate</span>
+                        <span class="status-badge normal" id="status-water">Normal</span>
+                    </div>
+                    <div class="card-value"><span id="val-water">0.00</span><span class="unit">L/min</span></div>
+                </div>
+                
+                <!-- Card 3: Voltage -->
+                <div class="card tel-card voltage" id="card-voltage">
+                    <div class="card-header">
+                        <span>Grid Voltage</span>
+                        <span class="status-badge normal" id="status-voltage">Normal</span>
+                    </div>
+                    <div class="card-value"><span id="val-voltage">0.0</span><span class="unit">V</span></div>
+                </div>
+            </div>
+
+            <!-- Tier 3 Right: Live Telemetry Graph (Middle Row, Right Column) -->
+            <div class="card charts-card">
+                <div class="charts-header">
+                    <h2>Real-Time Live Telemetry Graph</h2>
+                    <div class="chart-legend">
+                        <span class="leg-item pow"><span class="dot"></span>Power (kW)</span>
+                        <span class="leg-item wat"><span class="dot"></span>Water (L/m)</span>
+                        <span class="leg-item vol"><span class="dot"></span>Voltage (V)</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="liveChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tier 4: Live System Events & Diagnostics Log (Bottom Row, Full Width) -->
+            <div class="card log-card">
+                <div class="log-header">
+                    <h2>Live System Events & Diagnostics Log</h2>
+                    <span class="log-counter" id="log-count">0 events recorded</span>
+                </div>
+                <div class="table-container">
+                    <table class="event-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Electricity (kW)</th>
+                                <th>Water (L/m)</th>
+                                <th>Voltage (V)</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="log-tbody">
+                            <!-- Populated dynamically -->
+                            <tr id="empty-log-row">
+                                <td colspan="6" class="text-center">No telemetry received yet. Connecting to grid...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="/static/app.js?v=9"></script>
+</body>
+</html>
