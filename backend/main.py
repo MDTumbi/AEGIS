@@ -12,7 +12,7 @@ from pydantic import BaseModel
 
 from anomaly_detector import UtilityAnomalyDetector
 
-app = FastAPI(title="VoltStream & HydroFlow Analytics API")
+app = FastAPI(title="AEGIS: Anomaly Endpoint & Grid Integrity System API")
 
 # Initialize detector
 detector = UtilityAnomalyDetector()

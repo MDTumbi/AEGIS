@@ -1,4 +1,4 @@
-# VoltStream & HydroFlow: Smart Utility Grid Monitor
+# AEGIS: Anomaly Endpoint & Grid Integrity System
 
 An interactive, hardware-in-the-loop Cyber-Physical System (CPS) simulating and monitoring real-time smart household energy and water consumption. The system leverages an **unsupervised Machine Learning model (Isolation Forest)** at the edge to detect anomalous telemetry, combined with a **rules-based diagnostic engine** to diagnose specific grid and hydraulic faults in real-time.
 
