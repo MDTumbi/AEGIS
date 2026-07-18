@@ -142,16 +142,20 @@ body::after {
 }
 
 .premium-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -0.015em;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
     font-family: 'Outfit', sans-serif;
-    background: linear-gradient(135deg, #ffffff 40%, #60a5fa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(96, 165, 250, 0.15);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
     margin: 0;
     line-height: 1.2;
+}
+
+.premium-title strong {
+    font-weight: 850;
+    color: #ffffff;
+    letter-spacing: 0.05em;
 }
 
 .subtitle {
