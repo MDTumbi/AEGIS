@@ -1,4 +1,4 @@
-# VoltStream & HydroFlow: Low-Budget Arduino Uno USB Prototype (100% Safe)
+# AEGIS : Low-Budget Arduino Uno USB Prototype (100% Safe)
 
 This plan outlines how to build a physical, interactive hardware prototype using an **Arduino Uno**, **3 cheap potentiometers** (rotary knobs), a **DHT11 temperature/humidity sensor**, and an **active piezo buzzer** alarm.
 
